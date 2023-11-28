@@ -4,8 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>  
   </style>
-  <script src="main.js"></script>
-</head>
+  <script src="external/jquery-3.7.1.js"></script>  
+  <script src="./external/easytimer.js-master/dist/easytimer.js""></script>
+  </head>
 <body>
   <div class="toggle-header">
     <button class="toggle-oven" id="oven-btn-1" onclick=toggleOven(1)>Oven 1</button>
@@ -14,16 +15,92 @@
   </div>
   <div class="oven-wrapper">
     <div class="oven">
-      <div class="oven-info">
-
+      <div class="oven-info-input" id="oven-info-input-1">
+        <p>Oven 1</p>
+        <input type="text" id="oven-name">Name</input>
+        <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature">Temperature</input>
+        <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots">Slots</input>
+        <input type=text" id="swal-input4" value="ONT">Customer</input>
+        <button onclick=createGrid(1)>SUBMIT</button>
       </div>
-      <div class="oven-body">
+      <div class="oven-info-display">
+      </div>
+      <div class="oven-body" id="grid-1">
         <div class="slot">
           <div class="timer">
-            
+            <div id="timerInstance">00:00:00</div>
           </div>
         </div>
       </div>
     </div>
+    <button onclick=testFunction()>TEST</button>
   </div>
+  <script>
+    function toggleOven(number) {
+      $("#oven-info-input-" + (number)).show()
+    }
+
+    function createGrid(number) {
+      $("#oven-info-input-" + (number)).hide()
+      slots = $("#oven-slots").val()/2;
+      // create table with slots
+
+      $("#grid-1").empty();
+
+      var gridContent = "<table>";
+
+      for(i=1; i<=slots; i++) {
+
+        gridContent +="<tr>"
+
+        for(j=1;j<=2;j++){
+          
+          gridContent += "<td id="'row'+i+">" + i + j + "</td>"
+        }
+
+        gridContent +="</tr>"
+      }
+      gridContent += "</table>"
+      $("#grid-1").append(gridContent);
+      // put timer button in the slots
+    }
+
+
+    function newTimer() {
+      // called on oven slot button press -> generates a timer with pre-entered settings
+      // timer starts running
+    }
+
+
+
+
+
+    function testFunction() {
+      var testSlot = new ovenSlot()
+      testSlot.createTimer()
+    }
+
+    class ovenSlot {
+      // Constructor
+      constructor() {
+
+      }
+
+      // Methods
+      // createTimer(slot, time) {
+      createTimer() {
+        var timer = new easytimer.Timer();
+        timer.start({countdown: true, startValues: {seconds: 5}});
+
+        timer.addEventListener('secondsUpdated', function (e) {
+          $('#timerInstance').html(timer.getTimeValues().toString());
+        }); 
+
+        timer.addEventListener('targetAchieved', function (e) {
+          alert("time done");
+        });
+      }
+    }
+    
+  </script>
 </body>
