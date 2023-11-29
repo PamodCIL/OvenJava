@@ -28,11 +28,11 @@
       <div class="oven-body" id="grid-1">
         <div class="slot">
           <div class="timer">
-            <div id="timerInstance">00:00:00</div>
           </div>
         </div>
       </div>
     </div>
+    <div id="oven-1-row-1-column-1">00:00:00</div>
     <button onclick=testFunction()>TEST</button>
   </div>
   <script>
@@ -64,7 +64,8 @@
             row: i,
             column: j,
           }
-          gridContent += "<td><button onclick=newTimer("+ JSON.stringify(currentSlot) +")>" + i + j + "</button></td>"
+          let slotString = "oven-"+ ovenNumber + "-row-" + i + "-column-" + j;
+          gridContent += "<td><button onclick=newTimer("+ JSON.stringify(currentSlot) +") ><div id="+ slotString +">00:00:00</div></button></td>"
         }
         gridContent +="</tr>"
       }
@@ -79,12 +80,13 @@
       let oven = currentSlot.oven;
       let row = currentSlot.row;
       let column = currentSlot.column;
-      var timerSlot = new ovenSlot() 
+
+      // TODO fix the ovenSlot constructor so that it takes the oven, row and column and constructs based on that
+
+      var timerSlot = new ovenSlot(oven, row, column) 
+      timerSlot.createTimer()
            
     }
-
-
-
 
 
     function testFunction() {
@@ -94,19 +96,27 @@
 
     class ovenSlot {
       // Constructor
-      constructor() {
-        this.oven
+      constructor(oven, row, column, duration) {
+        this.oven = oven;
+        this.row = row;
+        this.column = column;
+        this.slotString = "oven-"+ this.oven + "-row-" + this.row + "-column-" + this.column;
 
+        // this.duration = duration
       }
 
+
       // Methods
-      // createTimer(slot, time) {
+      // createTimer() {
       createTimer() {
         var timer = new easytimer.Timer();
         timer.start({countdown: true, startValues: {seconds: 5}});
-
+        alert('#'+ this.slotString);
         timer.addEventListener('secondsUpdated', function (e) {
-          $('#timerInstance').html(timer.getTimeValues().toString());
+          // TODO FIX THIS
+          // $('#'+ this.slotString).html(timer.getTimeValues().toString());
+          $("#" + this.slotString).html(timer.getTimeValues().toString());
+
         }); 
 
         timer.addEventListener('targetAchieved', function (e) {
