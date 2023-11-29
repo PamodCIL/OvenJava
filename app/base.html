@@ -17,10 +17,11 @@
     <div class="oven" id="oven-1"">
       <div class="oven-info-input" id="oven-info-input-1">
         <p>Oven 1</p>
-        <input type="text" id="oven-name">Name</input>
-        <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature">Temperature</input>
-        <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots">Slots</input>
-        <input type=text" id="swal-input4" value="ONT">Customer</input>
+        <input type="text" id="oven-name-1">Name</input>
+        <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-1">Time</input>
+        <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-1">Temperature</input>
+        <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-1">Slots</input>
+        <input type=text" id="oven-customer-1" value="ONT">Customer</input>
         <button onclick=createGrid(1)>SUBMIT</button>
       </div>
       <div class="oven-info-display">
@@ -32,8 +33,6 @@
         </div>
       </div>
     </div>
-    <div id="oven-1-row-1-column-1">00:00:00</div>
-    <button onclick=testFunction()>TEST</button>
   </div>
   <script>
     function toggleOven(ovenNumber) {
@@ -50,9 +49,8 @@
 
     function createGrid(ovenNumber) {
       $("#oven-info-input-" + (ovenNumber)).hide()
-      slots = $("#oven-slots").val()/2;
-      // create table with slots
-
+      let slots = $("#oven-slots-" + ovenNumber).val()/2;
+      let duration = $("#oven-time-" + ovenNumber).val()
       $("#grid-"+(ovenNumber)).empty();
 
       var gridContent = "<table>";
@@ -63,15 +61,16 @@
             oven: ovenNumber,
             row: i,
             column: j,
+            duration: duration,
           }
           let slotString = "oven-"+ ovenNumber + "-row-" + i + "-column-" + j;
-          gridContent += "<td><button onclick=newTimer("+ JSON.stringify(currentSlot) +") ><div id="+ slotString +">00:00:00</div></button></td>"
+          gridContent += "<td><button onclick=newTimer("+ JSON.stringify(currentSlot) +") ><div id="+ 
+          slotString +">00:00:00</div></button><button onclick=removeTimer("+ JSON.stringify(currentSlot) +")>Remove</button</td>"
         }
         gridContent +="</tr>"
       }
       gridContent += "</table>"
       $("#grid-1").append(gridContent);
-      // put timer button in the slots
     }
 
 
@@ -80,18 +79,169 @@
       let oven = currentSlot.oven;
       let row = currentSlot.row;
       let column = currentSlot.column;
+      let duration = currentSlot.duration;
 
-      // TODO fix the ovenSlot constructor so that it takes the oven, row and column and constructs based on that
-
-      var timerSlot = new ovenSlot(oven, row, column) 
+      var timerSlot = new ovenSlot(oven, row, column, duration) 
       timerSlot.createTimer()
-           
     }
-
 
     function testFunction() {
       var testSlot = new ovenSlot()
       testSlot.createTimer()
+    }
+
+    var runningOvensList = []
+    var allSlots = {
+      oven1: {
+        row1: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row2: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row3: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row4: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row5: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row6: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        }
+      },
+      oven2: {
+        row1: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row2: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row3: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row4: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row5: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row6: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        }
+      },
+      oven3: {
+        row1: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row2: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row3: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row4: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row5: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        },
+        row6: {
+          column1: {
+            timer: false
+          },
+          column2: {
+            timer: false
+          },
+        }
+      },
     }
 
     class ovenSlot {
@@ -100,29 +250,53 @@
         this.oven = oven;
         this.row = row;
         this.column = column;
-        this.slotString = "oven-"+ this.oven + "-row-" + this.row + "-column-" + this.column;
-
-        // this.duration = duration
+        this.slotString = createSlotString(oven, row, column);
+        this.duration = duration;
       }
 
 
-      // Methods
-      // createTimer() {
+      // ovenSlot Methods
       createTimer() {
-        var timer = new easytimer.Timer();
-        timer.start({countdown: true, startValues: {seconds: 5}});
-        alert('#'+ this.slotString);
-        timer.addEventListener('secondsUpdated', function (e) {
-          // TODO FIX THIS
-          // $('#'+ this.slotString).html(timer.getTimeValues().toString());
-          $("#" + this.slotString).html(timer.getTimeValues().toString());
+        // TODO FINISH USING THE DICTIONARY
+        let slotID = '#' + this.slotString;
+        if(runningOvensList.includes(slotID)){
+          return
+        } else {
+          runningOvensList.push(slotID);
+          eval("var " + this.slotString + '-timer = new easytimer.Timer();')
+          // var timer = new easytimer.Timer();
+          timer.start({countdown: true, startValues: {seconds: this.duration*60}});
+          timer.addEventListener('secondsUpdated', function (e) {
+            $(slotID).html(timer.getTimeValues().toString());
 
-        }); 
-
-        timer.addEventListener('targetAchieved', function (e) {
-          alert("time done");
-        });
+          }); 
+          let timerAlert = (
+            "Oven: "      + this.oven + 
+            "\nRow: "     + this.row + 
+            "\nColumn: "  + this.column + 
+            "\nDone"
+            )
+          timer.addEventListener('targetAchieved', function (e) {
+            alert(timerAlert);
+            let ovenIndex = runningOvensList.indexOf(slotID)
+            runningOvensList.splice(ovenIndex, 1)
+          });
+        }
       }
+    }
+
+    function removeTimer(currentSlot) {
+      // find current slot
+      // remove the timer from there
+      let slotString = createSlotString(currentSlot.oven, currentSlot.row, currentSlot.column)
+      let ovenIndex = runningOvensList.indexOf("#"+slotString)
+      runningOvensList.splice(ovenIndex, 1)
+
+    }
+
+    function createSlotString(oven, row, column){
+      let slotString = "oven-"+ oven + "-row-" + row + "-column-" + column;
+      return slotString
     }
     
   </script>
