@@ -14,7 +14,7 @@
     <button class="toggle-oven" id="oven-btn-3" onclick=toggleOven(3)>Oven 3</button>
   </div>
   <div class="oven-wrapper">
-    <div class="oven">
+    <div class="oven" id="oven-1"">
       <div class="oven-info-input" id="oven-info-input-1">
         <p>Oven 1</p>
         <input type="text" id="oven-name">Name</input>
@@ -36,28 +36,36 @@
     <button onclick=testFunction()>TEST</button>
   </div>
   <script>
-    function toggleOven(number) {
-      $("#oven-info-input-" + (number)).show()
+    function toggleOven(ovenNumber) {
+      let ovenID = "#oven-" + (ovenNumber);
+
+      if ($(ovenID).is(":visible")){
+        $("#oven-"+(ovenNumber)).hide()
+        $("#grid-"+(ovenNumber)).empty();
+      } else {
+        $("#oven-"+(ovenNumber)).show()
+        $("#oven-info-input-" + (ovenNumber)).show()
+      }
     }
 
-    function createGrid(number) {
-      $("#oven-info-input-" + (number)).hide()
+    function createGrid(ovenNumber) {
+      $("#oven-info-input-" + (ovenNumber)).hide()
       slots = $("#oven-slots").val()/2;
       // create table with slots
 
-      $("#grid-1").empty();
+      $("#grid-"+(ovenNumber)).empty();
 
       var gridContent = "<table>";
-
       for(i=1; i<=slots; i++) {
-
         gridContent +="<tr>"
-
         for(j=1;j<=2;j++){
-          
-          gridContent += "<td id="'row'+i+">" + i + j + "</td>"
+          let currentSlot = {
+            oven: ovenNumber,
+            row: i,
+            column: j,
+          }
+          gridContent += "<td><button onclick=newTimer("+ JSON.stringify(currentSlot) +")>" + i + j + "</button></td>"
         }
-
         gridContent +="</tr>"
       }
       gridContent += "</table>"
@@ -66,9 +74,13 @@
     }
 
 
-    function newTimer() {
+    function newTimer(currentSlot) {
       // called on oven slot button press -> generates a timer with pre-entered settings
-      // timer starts running
+      let oven = currentSlot.oven;
+      let row = currentSlot.row;
+      let column = currentSlot.column;
+      var timerSlot = new ovenSlot() 
+           
     }
 
 
@@ -83,6 +95,7 @@
     class ovenSlot {
       // Constructor
       constructor() {
+        this.oven
 
       }
 
