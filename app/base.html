@@ -35,6 +35,198 @@
     </div>
   </div>
   <script>
+
+    // Global Variables
+
+    var allSlots = {
+      oven1: {
+        row1: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row2: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row3: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row4: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row5: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row6: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        }
+      },
+      oven2: {
+        row1: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row2: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row3: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row4: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row5: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row6: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        }
+      },
+      oven3: {
+        row1: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row2: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row3: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        },
+        row4: {
+          column1: {
+            slot: false,
+            timer: false
+          },
+          column2: {
+            slot: false,
+            timer: false,
+          },
+        },
+        row5: {
+          column1: {
+            slot: false,
+            timer: false,
+          },
+          column2: {
+            slot: false,
+            timer: false,
+          },
+        },
+        row6: {
+          column1: {
+            slot: false,
+            timer: false,
+          },
+          column2: {
+            slot: false,
+            timer: false
+          },
+        }
+      },
+    };
+
     function toggleOven(ovenNumber) {
       let ovenID = "#oven-" + (ovenNumber);
 
@@ -58,14 +250,14 @@
         gridContent +="<tr>"
         for(j=1;j<=2;j++){
           let currentSlot = {
-            oven: ovenNumber,
+            ovenNumber: ovenNumber,
             row: i,
             column: j,
             duration: duration,
           }
           let slotString = "oven-"+ ovenNumber + "-row-" + i + "-column-" + j;
           gridContent += "<td><button onclick=newTimer("+ JSON.stringify(currentSlot) +") ><div id="+ 
-          slotString +">00:00:00</div></button><button onclick=removeTimer("+ JSON.stringify(currentSlot) +")>Remove</button</td>"
+          slotString +">Start</div></button><button onclick=removeTimer("+ JSON.stringify(currentSlot) +")>Reset</button</td>"
         }
         gridContent +="</tr>"
       }
@@ -76,226 +268,79 @@
 
     function newTimer(currentSlot) {
       // called on oven slot button press -> generates a timer with pre-entered settings
-      let oven = currentSlot.oven;
+      let ovenNumber = currentSlot.ovenNumber;
       let row = currentSlot.row;
       let column = currentSlot.column;
       let duration = currentSlot.duration;
 
-      var timerSlot = new ovenSlot(oven, row, column, duration) 
+      var timerSlot = new ovenSlot(ovenNumber, row, column, duration) 
       timerSlot.createTimer()
     }
 
-    function testFunction() {
-      var testSlot = new ovenSlot()
-      testSlot.createTimer()
-    }
-
     var runningOvensList = []
-    var allSlots = {
-      oven1: {
-        row1: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row2: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row3: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row4: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row5: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row6: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        }
-      },
-      oven2: {
-        row1: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row2: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row3: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row4: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row5: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row6: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        }
-      },
-      oven3: {
-        row1: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row2: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row3: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row4: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row5: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        },
-        row6: {
-          column1: {
-            timer: false
-          },
-          column2: {
-            timer: false
-          },
-        }
-      },
-    }
 
     class ovenSlot {
-      // Constructor
-      constructor(oven, row, column, duration) {
-        this.oven = oven;
+      
+      constructor(ovenNumber, row, column, duration) {
+        this.ovenNumber = ovenNumber;
         this.row = row;
         this.column = column;
-        this.slotString = createSlotString(oven, row, column);
+        this.slotString = createSlotString(ovenNumber, row, column);
         this.duration = duration;
       }
 
 
       // ovenSlot Methods
       createTimer() {
-        // TODO FINISH USING THE DICTIONARY
+        let currentColumn = getColumnDict(this.ovenNumber, this.row, this.column); 
         let slotID = '#' + this.slotString;
-        if(runningOvensList.includes(slotID)){
+
+        if ( currentColumn["timer"] == true ) {
           return
         } else {
-          runningOvensList.push(slotID);
-          eval("var " + this.slotString + '-timer = new easytimer.Timer();')
-          // var timer = new easytimer.Timer();
-          timer.start({countdown: true, startValues: {seconds: this.duration*60}});
-          timer.addEventListener('secondsUpdated', function (e) {
-            $(slotID).html(timer.getTimeValues().toString());
-
+          currentColumn["timer"] = true;
+          currentColumn["timerEntity"] = new easytimer.Timer();
+          currentColumn["timerEntity"].start({countdown: true, startValues: {seconds: this.duration*60}});
+          currentColumn["timerEntity"].addEventListener('secondsUpdated', function (e) {
+            $(slotID).html(currentColumn["timerEntity"].getTimeValues().toString());
           }); 
+
           let timerAlert = (
             "Oven: "      + this.oven + 
             "\nRow: "     + this.row + 
             "\nColumn: "  + this.column + 
             "\nDone"
-            )
-          timer.addEventListener('targetAchieved', function (e) {
+          )
+
+          currentColumn["timerEntity"].addEventListener('targetAchieved', function (e) {
             alert(timerAlert);
-            let ovenIndex = runningOvensList.indexOf(slotID)
-            runningOvensList.splice(ovenIndex, 1)
+            currentColumn["timer"] = false;
           });
         }
       }
     }
 
     function removeTimer(currentSlot) {
-      // find current slot
-      // remove the timer from there
-      let slotString = createSlotString(currentSlot.oven, currentSlot.row, currentSlot.column)
-      let ovenIndex = runningOvensList.indexOf("#"+slotString)
-      runningOvensList.splice(ovenIndex, 1)
+      let slotID = '#' + createSlotString(currentSlot.ovenNumber, currentSlot.row, currentSlot.column);
+      let currentColumn = getColumnDict(currentSlot.ovenNumber, currentSlot.row, currentSlot.column);
 
+      currentColumn["timer"] = false;
+      currentColumn["timerEntity"] = null;
+
+      $(slotID).html("Start");
     }
 
-    function createSlotString(oven, row, column){
-      let slotString = "oven-"+ oven + "-row-" + row + "-column-" + column;
+    function getColumnDict(ovenNumber, row, column){
+      let ovenDict = allSlots["oven"+ovenNumber];
+      let rowDict = ovenDict["row"+row];
+      let columnDict = rowDict["column"+column];
+
+      return columnDict
+    }
+
+    function createSlotString(ovenNumber, row, column){
+      let slotString = "oven-"+ ovenNumber + "-row-" + row + "-column-" + column;
+
       return slotString
     }
     
