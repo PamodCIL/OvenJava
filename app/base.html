@@ -6,6 +6,10 @@
   </style>
   <script src="external/jquery-3.7.1.js"></script>  
   <script src="./external/easytimer.js-master/dist/easytimer.js""></script>
+  <!-- TODO Replace with local library -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="base.css">
   </head>
 <body>
   <div class="toggle-ovens-header">
@@ -13,71 +17,75 @@
     <button class="toggle-oven" id="oven-btn-2" onclick=toggleOven(2)>Oven 2</button>
     <button class="toggle-oven" id="oven-btn-3" onclick=toggleOven(3)>Oven 3</button>
   </div>
+  <div class="ovens-container">
+      <div class="oven" id="oven-1"">
+        <div class="oven-info-input" id="oven-info-input-1">
+          <p>Oven 1</p>
+          <p class="input-label">Name</p>
+          <input type="text" id="oven-name-1" value="1"></input>
 
-  <div class="oven-wrapper">
-    <div class="oven" id="oven-1"">
-      <div class="oven-info-input" id="oven-info-input-1">
-        <p>Oven 1</p>
-        <input type="text" id="oven-name-1" value="1">Name</input>
-        <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-1">Time</input>
-        <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-1">Temperature</input>
-        <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-1">Slots</input>
-        <input type=text" id="oven-customer-1" value="ONT">Customer</input>
-        <button onclick=createGrid(1)>SUBMIT</button>
+          <p class="input-label">Time</p>
+          <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-1"></input>
+
+          <p class="input-label">Temperature</p>
+          <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-1"></input>
+
+          <p class="input-label">Slots</p>
+          <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-1"></input>
+
+          <p class="input-label">Customer</p>
+          <input type=text" id="oven-customer-1" value="ONT"></input>
+          <button onclick=createGrid(1)>SUBMIT</button>
+        </div>
+
+        <div class="oven-info-display" id="oven-info-display-1">
+          <p id="oven-name-display-1"></p>
+          <p id="oven-time-display-1"></p>
+          <p id="oven-temperature-display-1"></p>
+        </div>
+
+        <div class="oven-body" id="grid-1"></div>
       </div>
 
-      <div class="oven-info-display" id="oven-info-display-1">
-        <p id="oven-name-display-1"></p>
-        <p id="oven-time-display-1"></p>
-        <p id="oven-temperature-display-1"></p>
+      <div class="oven" id="oven-2"">
+        <div class="oven-info-input" id="oven-info-input-2">
+          <p>Oven 2</p>
+          <input type="text" id="oven-name-2" value="2">Name</input>
+          <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-2">Time</input>
+          <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-2">Temperature</input>
+          <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-2">Slots</input>
+          <input type=text" id="oven-customer-2" value="ONT">Customer</input>
+          <button onclick=createGrid(2)>SUBMIT</button>
+        </div>
+
+        <div class="oven-info-display" id="oven-info-display-2">
+          <p id="oven-name-display-2"></p>
+          <p id="oven-time-display-2"></p>
+          <p id="oven-temperature-display-2"></p>
+        </div>
+
+        <div class="oven-body" id="grid-2"></div>
       </div>
 
-      <div class="oven-body" id="grid-1"></div>
-    </div>
-  </div>
+      <div class="oven" id="oven-3"">
+        <div class="oven-info-input" id="oven-info-input-3">
+          <p>Oven 3</p>
+          <input type="text" id="oven-name-3" value="3">Name</input>
+          <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-3">Time</input>
+          <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-3">Temperature</input>
+          <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-3">Slots</input>
+          <input type=text" id="oven-customer-3" value="ONT">Customer</input>
+          <button onclick=createGrid(3)>SUBMIT</button>
+        </div>
 
-  <div class="oven-wrapper">
-    <div class="oven" id="oven-2"">
-      <div class="oven-info-input" id="oven-info-input-2">
-        <p>Oven 2</p>
-        <input type="text" id="oven-name-2" value="2">Name</input>
-        <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-2">Time</input>
-        <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-2">Temperature</input>
-        <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-2">Slots</input>
-        <input type=text" id="oven-customer-2" value="ONT">Customer</input>
-        <button onclick=createGrid(2)>SUBMIT</button>
+        <div class="oven-info-display" id="oven-info-display-3">
+          <p id="oven-name-display-3"></p>
+          <p id="oven-time-display-3"></p>
+          <p id="oven-temperature-display-3"></p>
+        </div>
+
+        <div class="oven-body" id="grid-3"></div>
       </div>
-
-      <div class="oven-info-display" id="oven-info-display-2">
-        <p id="oven-name-display-2"></p>
-        <p id="oven-time-display-2"></p>
-        <p id="oven-temperature-display-2"></p>
-      </div>
-
-      <div class="oven-body" id="grid-2"></div>
-    </div>
-  </div>
-
-  <div class="oven-wrapper">
-    <div class="oven" id="oven-3"">
-      <div class="oven-info-input" id="oven-info-input-3">
-        <p>Oven 3</p>
-        <input type="text" id="oven-name-3" value="3">Name</input>
-        <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-3">Time</input>
-        <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-3">Temperature</input>
-        <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-3">Slots</input>
-        <input type=text" id="oven-customer-3" value="ONT">Customer</input>
-        <button onclick=createGrid(3)>SUBMIT</button>
-      </div>
-
-      <div class="oven-info-display" id="oven-info-display-3">
-        <p id="oven-name-display-3"></p>
-        <p id="oven-time-display-3"></p>
-        <p id="oven-temperature-display-3"></p>
-      </div>
-
-      <div class="oven-body" id="grid-3"></div>
-    </div>
   </div>
   <script>
 
@@ -293,20 +301,27 @@
         } else {
           currentColumn["timer"] = true;
           currentColumn["timerEntity"] = new easytimer.Timer();
-          currentColumn["timerEntity"].start({countdown: true, startValues: {seconds: this.duration*60}});
+          currentColumn["timerEntity"].start({countdown: true, startValues: {seconds: 10}});
+          // TODO Reinclude this to reenable correct duration passing
+          // currentColumn["timerEntity"].start({countdown: true, startValues: {seconds: this.duration*60}});
           currentColumn["timerEntity"].addEventListener('secondsUpdated', function (e) {
             $(slotID).html(currentColumn["timerEntity"].getTimeValues().toString());
           }); 
 
           let timerAlert = (
-            "Oven: "      + this.oven + 
+            "Oven: "      + this.ovenNumber + 
             "\nRow: "     + this.row + 
             "\nColumn: "  + this.column + 
             "\nDone"
           )
 
           currentColumn["timerEntity"].addEventListener('targetAchieved', function (e) {
-            alert(timerAlert);
+            // TODO REPLACE THIS WITH SWAL
+            // alert(timerAlert);
+            Swal.close();
+            Swal.fire({
+              title: timerAlert
+            });
             currentColumn["timer"] = false;
           });
         }
@@ -319,9 +334,16 @@
       // Functions that execute as soon as page loads
       $(".oven-info-input").hide()
       $(".oven-info-display").hide()
+      $(".oven").hide()
     });
 
     function toggleOven(ovenNumber) {
+
+      // Clear any pre-existing attributes
+      $("#oven-name-display-" + (ovenNumber)).empty()
+      $("#oven-temperature-display-" + (ovenNumber)).empty()
+      $("#oven-time-display-" + (ovenNumber)).empty()
+
       let ovenID = "#oven-" + (ovenNumber);
 
       if ($(ovenID).is(":visible")){
@@ -337,6 +359,7 @@
 
 
     function createGrid(ovenNumber) {
+      
       // Get oven attributes
       $("#oven-info-input-" + (ovenNumber)).hide()
       let slots = $("#oven-slots-" + ovenNumber).val()/2;
@@ -362,8 +385,8 @@
             duration: duration,
           }
           let slotString = "oven-"+ ovenNumber + "-row-" + i + "-column-" + j;
-          gridContent += "<td><button onclick=newTimer("+ JSON.stringify(currentSlot) +") ><div id="+ 
-          slotString +">Start</div></button><button onclick=removeTimer("+ JSON.stringify(currentSlot) +")>Reset</button</td>"
+          gridContent += "<td><button class='timer-btn' onclick=newTimer("+ JSON.stringify(currentSlot) +") ><div id="+ 
+          slotString +">Start</div></button><button class='reset-btn' onclick=removeTimer("+ JSON.stringify(currentSlot) +")>Reset</button</td>"
         }
         gridContent +="</tr>"
       }
