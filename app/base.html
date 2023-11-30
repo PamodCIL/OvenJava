@@ -8,36 +8,80 @@
   <script src="./external/easytimer.js-master/dist/easytimer.js""></script>
   </head>
 <body>
-  <div class="toggle-header">
+  <div class="toggle-ovens-header">
     <button class="toggle-oven" id="oven-btn-1" onclick=toggleOven(1)>Oven 1</button>
     <button class="toggle-oven" id="oven-btn-2" onclick=toggleOven(2)>Oven 2</button>
     <button class="toggle-oven" id="oven-btn-3" onclick=toggleOven(3)>Oven 3</button>
   </div>
+
   <div class="oven-wrapper">
     <div class="oven" id="oven-1"">
       <div class="oven-info-input" id="oven-info-input-1">
         <p>Oven 1</p>
-        <input type="text" id="oven-name-1">Name</input>
+        <input type="text" id="oven-name-1" value="1">Name</input>
         <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-1">Time</input>
         <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-1">Temperature</input>
         <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-1">Slots</input>
         <input type=text" id="oven-customer-1" value="ONT">Customer</input>
         <button onclick=createGrid(1)>SUBMIT</button>
       </div>
-      <div class="oven-info-display">
+
+      <div class="oven-info-display" id="oven-info-display-1">
+        <p id="oven-name-display-1"></p>
+        <p id="oven-time-display-1"></p>
+        <p id="oven-temperature-display-1"></p>
       </div>
-      <div class="oven-body" id="grid-1">
-        <div class="slot">
-          <div class="timer">
-          </div>
-        </div>
+
+      <div class="oven-body" id="grid-1"></div>
+    </div>
+  </div>
+
+  <div class="oven-wrapper">
+    <div class="oven" id="oven-2"">
+      <div class="oven-info-input" id="oven-info-input-2">
+        <p>Oven 2</p>
+        <input type="text" id="oven-name-2" value="2">Name</input>
+        <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-2">Time</input>
+        <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-2">Temperature</input>
+        <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-2">Slots</input>
+        <input type=text" id="oven-customer-2" value="ONT">Customer</input>
+        <button onclick=createGrid(2)>SUBMIT</button>
       </div>
+
+      <div class="oven-info-display" id="oven-info-display-2">
+        <p id="oven-name-display-2"></p>
+        <p id="oven-time-display-2"></p>
+        <p id="oven-temperature-display-2"></p>
+      </div>
+
+      <div class="oven-body" id="grid-2"></div>
+    </div>
+  </div>
+
+  <div class="oven-wrapper">
+    <div class="oven" id="oven-3"">
+      <div class="oven-info-input" id="oven-info-input-3">
+        <p>Oven 3</p>
+        <input type="text" id="oven-name-3" value="3">Name</input>
+        <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-3">Time</input>
+        <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-3">Temperature</input>
+        <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-3">Slots</input>
+        <input type=text" id="oven-customer-3" value="ONT">Customer</input>
+        <button onclick=createGrid(3)>SUBMIT</button>
+      </div>
+
+      <div class="oven-info-display" id="oven-info-display-3">
+        <p id="oven-name-display-3"></p>
+        <p id="oven-time-display-3"></p>
+        <p id="oven-temperature-display-3"></p>
+      </div>
+
+      <div class="oven-body" id="grid-3"></div>
     </div>
   </div>
   <script>
 
     // Global Variables
-
     var allSlots = {
       oven1: {
         row1: {
@@ -227,7 +271,6 @@
       },
     };
 
-  
     // CLASSES
     class ovenSlot {
 
@@ -272,6 +315,12 @@
 
     // FUNCTIONS
 
+    $( document ).ready(function() {
+      // Functions that execute as soon as page loads
+      $(".oven-info-input").hide()
+      $(".oven-info-display").hide()
+    });
+
     function toggleOven(ovenNumber) {
       let ovenID = "#oven-" + (ovenNumber);
 
@@ -281,14 +330,25 @@
       } else {
         $("#oven-"+(ovenNumber)).show()
         $("#oven-info-input-" + (ovenNumber)).show()
+        $("#oven-info-display-" + (ovenNumber)).show()
+        $
       }
     }
 
 
     function createGrid(ovenNumber) {
+      // Get oven attributes
       $("#oven-info-input-" + (ovenNumber)).hide()
       let slots = $("#oven-slots-" + ovenNumber).val()/2;
       let duration = $("#oven-time-" + ovenNumber).val()
+
+      // Create info display
+      $("#oven-name-display-" + (ovenNumber)).html("Name: " + $("#oven-name-" + ovenNumber).val());
+      $("#oven-temperature-display-" + (ovenNumber)).html("Temperature: " + $("#oven-temperature-" + ovenNumber).val());
+      $("#oven-time-display-" + (ovenNumber)).html("Time: " + $("#oven-time-" + ovenNumber).val());
+
+
+      // Create grid
       $("#grid-"+(ovenNumber)).empty();
 
       var gridContent = "<table>";
@@ -308,7 +368,7 @@
         gridContent +="</tr>"
       }
       gridContent += "</table>"
-      $("#grid-1").append(gridContent);
+      $("#grid-" + (ovenNumber)).append(gridContent);
     }
 
 
