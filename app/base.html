@@ -20,22 +20,33 @@
   <div class="ovens-container">
       <div class="oven" id="oven-1"">
         <div class="oven-info-input" id="oven-info-input-1">
-          <p>Oven 1</p>
-          <p class="input-label">Name</p>
-          <input type="text" id="oven-name-1" value="1"></input>
+          <p class="oven-name">Oven 1</p>
+          <div class="input-line">
+            <p class="input-label">Name:</p>
+            <input class="info-input" type="text" id="oven-name-1" value="1"></input>
+          </div>
 
-          <p class="input-label">Time</p>
-          <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-1"></input>
+          <div class="input-line">
+            <p class="input-label">Time:</p>
+            <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-1"></input>
+          </div>
 
-          <p class="input-label">Temperature</p>
-          <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-1"></input>
+          <div class="input-line">
+            <p class="input-label">Temperature:</p>
+            <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-1"></input>
+          </div>
 
-          <p class="input-label">Slots</p>
-          <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-1"></input>
+          <div class="input-line">
+            <p class="input-label">Slots:</p>
+            <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-1"></input>
+          </div>
 
-          <p class="input-label">Customer</p>
-          <input type=text" id="oven-customer-1" value="ONT"></input>
-          <button onclick=createGrid(1)>SUBMIT</button>
+          <div class="input-line">
+            <p class="input-label">Customer:</p>
+            <input type=text" id="oven-customer-1" value="ONT"></input>
+          </div>
+
+          <button class="submit-info" onclick=createGrid(1)>SUBMIT</button>
         </div>
 
         <div class="oven-info-display" id="oven-info-display-1">
@@ -49,13 +60,33 @@
 
       <div class="oven" id="oven-2"">
         <div class="oven-info-input" id="oven-info-input-2">
-          <p>Oven 2</p>
-          <input type="text" id="oven-name-2" value="2">Name</input>
-          <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-2">Time</input>
-          <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-2">Temperature</input>
-          <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-2">Slots</input>
-          <input type=text" id="oven-customer-2" value="ONT">Customer</input>
-          <button onclick=createGrid(2)>SUBMIT</button>
+          <p class="oven-name">Oven 2</p>
+          <div class="input-line">
+            <p class="input-label">Name:</p>
+            <input class="info-input" type="text" id="oven-name-2" value="2"></input>
+          </div>
+
+          <div class="input-line">
+            <p class="input-label">Time:</p>
+            <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-2"></input>
+          </div>
+
+          <div class="input-line">
+            <p class="input-label">Temperature:</p>
+            <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-2"></input>
+          </div>
+
+          <div class="input-line">
+            <p class="input-label">Slots:</p>
+            <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-2"></input>
+          </div>
+
+          <div class="input-line">
+            <p class="input-label">Customer:</p>
+            <input type=text" id="oven-customer-2" value="ONT"></input>
+          </div>
+
+          <button class="submit-info" onclick=createGrid(2)>SUBMIT</button>
         </div>
 
         <div class="oven-info-display" id="oven-info-display-2">
@@ -69,13 +100,32 @@
 
       <div class="oven" id="oven-3"">
         <div class="oven-info-input" id="oven-info-input-3">
-          <p>Oven 3</p>
-          <input type="text" id="oven-name-3" value="3">Name</input>
-          <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-3">Time</input>
-          <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-3">Temperature</input>
-          <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-3">Slots</input>
-          <input type=text" id="oven-customer-3" value="ONT">Customer</input>
-          <button onclick=createGrid(3)>SUBMIT</button>
+          <p class="oven-name">Oven 3</p>
+          <div class="input-line">
+            <p class="input-label">Name:</p>
+            <input class="info-input" type="text" id="oven-name-3" value="1"></input>
+          </div>
+
+          <div class="input-line">
+            <p class="input-label">Time:</p>
+            <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-3"></input>
+          </div>
+
+          <div class="input-line">
+            <p class="input-label">Temperature:</p>
+            <input type="number" onKeyDown="return false" min="100" max="300" value="200" step="10" id="oven-temperature-3"></input>
+          </div>
+
+          <div class="input-line">
+            <p class="input-label">Slots:</p>
+            <input type="number" onKeyDown="return false" max="12" min="2" step="2" value="2" id="oven-slots-3"></input>
+          </div>
+
+          <div class="input-line">
+            <p class="input-label">Customer:</p>
+            <input type=text" id="oven-customer-3" value="ONT"></input>
+          </div>
+          <button class="submit-info" onclick=createGrid(3)>SUBMIT</button>
         </div>
 
         <div class="oven-info-display" id="oven-info-display-3">
@@ -376,7 +426,7 @@
 
       var gridContent = "<table>";
       for(i=1; i<=slots; i++) {
-        gridContent +="<tr>"
+        gridContent +="<tr class=oven-row>"
         for(j=1;j<=2;j++){
           let currentSlot = {
             ovenNumber: ovenNumber,
@@ -385,8 +435,8 @@
             duration: duration,
           }
           let slotString = "oven-"+ ovenNumber + "-row-" + i + "-column-" + j;
-          gridContent += "<td><button class='timer-btn' onclick=newTimer("+ JSON.stringify(currentSlot) +") ><div id="+ 
-          slotString +">Start</div></button><button class='reset-btn' onclick=removeTimer("+ JSON.stringify(currentSlot) +")>Reset</button</td>"
+          gridContent += "<td class=oven-cell><button class='timer-btn' onclick=newTimer("+ JSON.stringify(currentSlot) +") ><div id="+ 
+          slotString +">Start</div></button><button class='reset-btn' onclick=removeTimer("+ JSON.stringify(currentSlot) +")>X</button</td>"
         }
         gridContent +="</tr>"
       }
@@ -412,7 +462,9 @@
       let currentColumn = getColumnDict(currentSlot.ovenNumber, currentSlot.row, currentSlot.column);
 
       currentColumn["timer"] = false;
-      currentColumn["timerEntity"] = null;
+      // currentColumn["timerEntity"] = null;
+      currentColumn["timerEntity"].reset();
+      currentColumn["timerEntity"].stop();
 
       $(slotID).html("Start");
     }
