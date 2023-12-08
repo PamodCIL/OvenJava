@@ -6,11 +6,10 @@
   </style>
   <script src="external/jquery-3.7.1.js"></script>  
   <script src="./external/easytimer.js-master/dist/easytimer.js""></script>
-  <!-- TODO Replace with local library -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
+  <script src="external/sweetalert2.all.js"></script>
+  <link rel="stylesheet" href="external/sweetalert2.min.css">
   <link rel="stylesheet" href="base.css">
-  </head>
+</head>
 <body>
   <div class="toggle-ovens-header">
     <button class="toggle-oven" id="oven-btn-1" onclick=toggleOven(1)>Oven 1</button>
@@ -108,7 +107,7 @@
 
           <div class="input-line">
             <p class="input-label">Time:</p>
-            <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-3"></input>
+            <input type="number" onKeyDown="return false" min="10" max="300" value="10" step="10" id="oven-time-3"></input>
           </div>
 
           <div class="input-line">
@@ -351,9 +350,7 @@
         } else {
           currentColumn["timer"] = true;
           currentColumn["timerEntity"] = new easytimer.Timer();
-          currentColumn["timerEntity"].start({countdown: true, startValues: {seconds: 10}});
-          // TODO Reinclude this to reenable correct duration passing
-          // currentColumn["timerEntity"].start({countdown: true, startValues: {seconds: this.duration*60}});
+          currentColumn["timerEntity"].start({countdown: true, startValues: {seconds: this.duration*60}});
           currentColumn["timerEntity"].addEventListener('secondsUpdated', function (e) {
             $(slotID).html(currentColumn["timerEntity"].getTimeValues().toString());
           }); 
@@ -366,8 +363,6 @@
           )
 
           currentColumn["timerEntity"].addEventListener('targetAchieved', function (e) {
-            // TODO REPLACE THIS WITH SWAL
-            // alert(timerAlert);
             Swal.close();
             Swal.fire({
               title: timerAlert
