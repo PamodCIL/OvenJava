@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en-UK">
 <head>
   <title>Oven Timer App</title>
   <meta charset="UTF-8">
@@ -22,12 +24,12 @@
           <p class="oven-name">Oven 1</p>
           <div class="input-line">
             <p class="input-label">Name:</p>
-            <input class="info-input" type="text" id="oven-name-1" value="1"></input>
+            <input class="info-input" type="text" id="oven-name-1" value="Oven 1"></input>
           </div>
 
           <div class="input-line">
             <p class="input-label">Time:</p>
-            <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-1"></input>
+            <input type="number" onKeyDown="return false" min="10" max="300" value="10" step="10" id="oven-time-1"></input>
           </div>
 
           <div class="input-line">
@@ -62,12 +64,12 @@
           <p class="oven-name">Oven 2</p>
           <div class="input-line">
             <p class="input-label">Name:</p>
-            <input class="info-input" type="text" id="oven-name-2" value="2"></input>
+            <input class="info-input" type="text" id="oven-name-2" value="Oven 2"></input>
           </div>
 
           <div class="input-line">
             <p class="input-label">Time:</p>
-            <input type="number" onKeyDown="return false" min="0" max="300" value="10" step="10" id="oven-time-2"></input>
+            <input type="number" onKeyDown="return false" min="10" max="300" value="10" step="10" id="oven-time-2"></input>
           </div>
 
           <div class="input-line">
@@ -102,7 +104,7 @@
           <p class="oven-name">Oven 3</p>
           <div class="input-line">
             <p class="input-label">Name:</p>
-            <input class="info-input" type="text" id="oven-name-3" value="1"></input>
+            <input class="info-input" type="text" id="oven-name-3" value="Oven 3"></input>
           </div>
 
           <div class="input-line">
@@ -137,6 +139,8 @@
       </div>
   </div>
   <script>
+    
+    // To add another oven: add a dictionary entry to allSlots dict and duplicate/update HTML for an oven
 
     // Global Variables
     var allSlots = {
@@ -368,6 +372,11 @@
               title: timerAlert
             });
             currentColumn["timer"] = false;
+            currentColumn["timerEntity"].reset();
+            currentColumn["timerEntity"].stop();
+
+            $(slotID).html("Done");
+
           });
         }
       }
@@ -457,7 +466,6 @@
       let currentColumn = getColumnDict(currentSlot.ovenNumber, currentSlot.row, currentSlot.column);
 
       currentColumn["timer"] = false;
-      // currentColumn["timerEntity"] = null;
       currentColumn["timerEntity"].reset();
       currentColumn["timerEntity"].stop();
 
@@ -482,3 +490,4 @@
     
   </script>
 </body>
+</html>
