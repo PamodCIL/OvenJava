@@ -332,6 +332,8 @@
       },
     };
 
+    var audio = new Audio("./external/leapfrog.ogg")
+
     // CLASSES
     class ovenSlot {
 
@@ -368,9 +370,16 @@
 
           currentColumn["timerEntity"].addEventListener('targetAchieved', function (e) {
             Swal.close();
+            // play alarm
+            audio.loop = true;
+            audio.play();
             Swal.fire({
               title: timerAlert
-            });
+            }).then(() => {
+              //stop alarm 
+              audio.loop = false;
+              audio.pause();
+            })
             currentColumn["timer"] = false;
             currentColumn["timerEntity"].reset();
             currentColumn["timerEntity"].stop();
